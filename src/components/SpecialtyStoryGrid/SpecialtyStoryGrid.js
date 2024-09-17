@@ -7,6 +7,8 @@ import MarketCard from '../MarketCard';
 import SectionTitle from '../SectionTitle';
 import MiniStory from '../MiniStory';
 
+import { QUERIES } from '../../constants';
+
 const SpecialtyStoryGrid = () => {
   return (
     <Wrapper>
@@ -36,7 +38,9 @@ const SpecialtyStoryGrid = () => {
         </SectionTitle>
         <SportsStories>
           {SPORTS_STORIES.map((data) => (
-            <MiniStory key={data.id} {...data} />
+            <FixedWidthOnLargeScreen key={data.id}>
+              <MiniStory {...data} />
+            </FixedWidthOnLargeScreen>
           ))}
         </SportsStories>
       </SportsSection>
@@ -47,14 +51,50 @@ const SpecialtyStoryGrid = () => {
 const Wrapper = styled.div`
   display: grid;
   gap: 48px;
+  grid-template-columns: minmax(0, 1fr);
+
+  @media (${QUERIES.tabletAndUp}) {
+    gap: 64;
+  }
+
+  @media (${QUERIES.laptopAndUp}) {
+    grid-template-columns: 1fr minmax(0, 1fr);
+    // Replaced by grid dividers
+    gap: 0;
+  }
 `;
 
-const MarketsSection = styled.section``;
+const MarketsSection = styled.section`
+  @media (${QUERIES.laptopAndUp}) {
+    border-right: 1px solid var(--color-gray-300);
+    padding-right: 16px;
+    margin-right: 16px;
+  }
+`;
 
-const MarketCards = styled.div``;
+const MarketCards = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+`;
 
 const SportsSection = styled.section``;
 
-const SportsStories = styled.div``;
+const SportsStories = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+
+  @media (${QUERIES.tabletAndUp}) {
+    display: flex;
+    overflow: auto;
+  }
+`;
+
+const FixedWidthOnLargeScreen = styled.div`
+  @media (${QUERIES.tabletAndUp}) {
+    min-width: 220px;
+  }
+`;
 
 export default SpecialtyStoryGrid;
