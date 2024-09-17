@@ -69,6 +69,10 @@ const MainHeader = styled(MaxWidthWrapper)`
   justify-content: center;
   margin-top: 32px;
   margin-bottom: 48px;
+
+  @media (${QUERIES.tabletAndUp}) {
+    margin-bottom: 72px;
+  }
 `;
 
 export default Header;
