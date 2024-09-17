@@ -99,9 +99,9 @@ const StoryWrapper = styled.div`
   }
 
   ${OpinionSection} & {
-    flex: 1;
-    
     @media(${QUERIES.tabletOnly}) {
+      flex: 1;
+
       &:not(:last-of-type) {
         border-bottom: revert;
         padding-bottom: revert;
@@ -116,8 +116,10 @@ const StoryList = styled.div`
   flex-direction: column;
 
   ${OpinionSection} & {
-    flex-direction: row;
-    gap: 32px;
+    @media(${QUERIES.tabletOnly}) {
+      flex-direction: row;
+      gap: 32px;
+    }
   }
 `;
 
