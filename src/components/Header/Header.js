@@ -42,7 +42,7 @@ const Header = () => {
         <Logo />
         <LargeScreenOnly>
           <SubscribeWrapper>
-            <Button>Subscribe</Button>
+            <SubscribeButton>Subscribe</SubscribeButton>
             <AlreadyASubscriberLink href="/">
               Already a subscriber?
             </AlreadyASubscriberLink>
@@ -101,7 +101,8 @@ const MainHeader = styled(MaxWidthWrapper)`
   }
 
   @media (${QUERIES.laptopAndUp}) {
-    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
   }
 `;
 
@@ -111,13 +112,21 @@ const AlreadyASubscriberLink = styled.a`
   font-weight: var(--font-weight-normal);
   font-style: italic;
   font-family: var(--font-family-serif);
+
+  grid-column: 2;
+  grid-row: 2;
 `;
 
 const SubscribeWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr auto;
   gap: 8px;
-  align-items: center;
+  justify-items: center;
+`;
+
+const SubscribeButton = styled(Button)`
+  grid-column: 2;
+  grid-row: 1;
 `;
 
 export default Header;
